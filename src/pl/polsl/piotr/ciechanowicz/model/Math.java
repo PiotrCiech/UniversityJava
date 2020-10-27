@@ -14,6 +14,7 @@ public class Math {
      * @param m2 Second matrix on which are done operations.
      * @return matrix which is a result of addition of two matrices m1,m2.
      */
+
     public static Matrix add(Matrix m1, Matrix m2) {
         if (m1.getHeight() != m2.getHeight())
             return null;
@@ -59,7 +60,7 @@ public class Math {
     }
 
     /**
-     * Function is used to multiply  matrix by matrix.
+     * Function is used to multiply  matrix by matrix
      * @param m1 First matrix on which are done operations.
      * @param m2 Second matrix on which are done operations.
      * @return matrix which is a result of multiplication of two matrices m1,m2.

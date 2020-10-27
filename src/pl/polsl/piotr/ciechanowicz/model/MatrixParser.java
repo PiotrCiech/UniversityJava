@@ -4,6 +4,10 @@
 
 package pl.polsl.piotr.ciechanowicz.model;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 /**
  * Class for printing data into console
  * @author Piotr Ciechanowicz
@@ -14,10 +18,25 @@ public class MatrixParser {
     /**
      *Function used to parse a string into an object of type Matrix
      * @param  matrix which is supposed to be converted from string to the matrix object
+     * @throws Exception invalid argument exception
      * @return object of type Matrix
      */
-    public static Matrix parseString(String matrix) {
-        String copyMatrix = matrix;
+    public static Matrix parseString(String matrix) throws Exception {
+        int numberOfSemicolon = numberOfChar(matrix, ';');
+        int numberOfComma = numberOfChar(matrix, ',');
+
+        matrix = matrix.trim();
+        matrix = matrix.replaceAll("[a-z]", "");
+        matrix = matrix.replaceAll("[A-Z]", "");
+
+
+        if ((numberOfSemicolon - 1) != numberOfComma / numberOfSemicolon) throw new Exception("Invalid argument");
+        if (matrix.matches("[\\s\\S]*(,;)[\\s\\S]*")
+                || matrix.matches("[\\s\\S]*(;,)[\\s\\S]*")
+                || matrix.matches("[\\s\\S]*(;;)[\\s\\S]*")
+                || matrix.matches("[\\s\\S]*(,,)[\\s\\S]*") ) throw new Exception("Invalid argument!");
+
+
         int width = 1;
         int height = 0;
 
@@ -45,7 +64,7 @@ public class MatrixParser {
 
                 if (subChar == ',')
                     x++;
-                else if (subChar == ';') {
+                else {
                     y++;
                     x = 0;
                 }
@@ -53,5 +72,21 @@ public class MatrixParser {
             }
         }
         return ret;
+    }
+
+    /**
+     * This function checks how many times in the string is used specialized character
+     * @param str in which character is checking
+     * @param character is checking by the string
+     * @return number of specific character in this string
+     */
+    private static int numberOfChar(String str, char character) {
+        if (str == null) return 0;
+
+        return str.chars()
+                .mapToObj(i -> (char) i)
+                .filter(i -> i == character)
+                .collect(Collectors.toList())
+                .size();
     }
 }

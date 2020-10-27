@@ -1,2 +1,2 @@
-java -jar PiotrCiechanowicz.jar mul 1,1,1;2,1,2;3,3,3; 1,1,1;2,1,2;3,3,3;
+java -jar PiotrCiechanowicz2.jar add 1,1,1;2,1,2;3,3,3; 1,1,1;2,1,2;3,3,3;
 pause

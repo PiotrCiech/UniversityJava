@@ -4,6 +4,8 @@ package pl.polsl.piotr.ciechanowicz.view;
 
 import pl.polsl.piotr.ciechanowicz.model.Matrix;
 
+import java.util.List;
+
 
 /**
  * Class for displaying matrices
@@ -18,9 +20,9 @@ public class View {
      */
     public static void showMatrix (Matrix matrix)
     {
-        for (int i = 0; i < matrix.getHeight(); i++) {
-            for (int j = 0; j < matrix.getWidth(); j++) {
-                System.out.print(matrix.getValue(j,i));
+        for (List<Integer> row : matrix.getValues()) {
+            for (Integer value : row) {
+                System.out.print(value);
                 System.out.print("\t");
             }
             System.out.println("\t");
